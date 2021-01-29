@@ -1,4 +1,4 @@
-# python 3.8? 
+# python 3.8
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
