@@ -14,7 +14,6 @@ def main():
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, "style-scope ytd-playlist-video-list-renderer")))
 
     # Scroll playlist down to load all the videos in it
-    #playlistSize = int(driver.find_element_by_xpath("//*[@id='stats']//*[contains(text(),' vídeos')]").text.split(" vídeos")[0])
     videoCountXPATH = "//*[@id='stats']//span[1]"
     videoCount = int(driver.find_element_by_xpath(videoCountXPATH).text)
 
@@ -27,10 +26,12 @@ def main():
     # Get the url of all the excluded videos in the playlist
     excludedVideoXPATH = "//a[contains(text(),'[Vídeo excluído]')]"
     excludedVideosElements = driver.find_elements_by_xpath(excludedVideoXPATH)
+
     infoToSearch = []
     for excludedVideoElement in excludedVideosElements:
         videoUrl = excludedVideoElement.get_attribute("href")
         infoToSearch.append(videoUrl.split("=")[1].split("&")[0])
+
     print(">> number of excluded videos:", len(infoToSearch))
 
     infoToSearch = infoToSearch
